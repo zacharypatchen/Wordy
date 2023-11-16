@@ -12,7 +12,6 @@ Wordy is an Android word-guessing game that allows users to guess words and mana
   - [Gameplay](#gameplay)
   - [Adding Words](#adding-words)
 - [Contributing](#contributing)
-- [License](#license)
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction
