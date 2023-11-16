@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1009808844890",
+    "project_id": "wordy-f432e",
+    "storage_bucket": "wordy-f432e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009808844890:android:e222abfc72eac539565063",
+        "android_client_info": {
+          "package_name": "com.patchen.wordy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-n6KMT-iQZ8eA-JpIoOun5nNv_yn66bE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
