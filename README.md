@@ -69,10 +69,6 @@ Wordy is a simple Android application developed in Java. It provides users with 
 
 Contributions are welcome! If you'd like to contribute to Wordy, please follow the [contributing guidelines](CONTRIBUTING.md).
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Acknowledgments
 
 - Thanks to [Firebase](https://firebase.google.com/) for providing the backend infrastructure.
