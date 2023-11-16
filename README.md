@@ -16,12 +16,12 @@ Wordy is an Android word-guessing game that allows users to guess words and mana
 
 ## Introduction
 
-Wordy is a simple Android application developed in Java. It provides users with a word-guessing game where they can play, add new words to the database, and celebrate victories.
+Wordy is a simple Android application developed in Java. It provides users with a word-guessing game where they can play, add new words to a firebase database, and celebrate victories.
 
 ## Features
 
 - **Gameplay:** Guess words in a grid-based interface and progress through rounds.
-- **Database Management:** Add new words to the database or clear the entire word database.
+- **Database Management:** Add new words to the firebase database or clear the entire database.
 - **Victory Screen:** Enjoy a congratulatory message when successfully guessing a word.
 
 ## Getting Started
@@ -59,10 +59,10 @@ Wordy is a simple Android application developed in Java. It provides users with 
 
 1. **Add New Words:**
    - Navigate to the "Add Words" section from the main screen.
-   - Input a new word and click "Submit" to add it to the word database.
+   - Input a new word and click "Submit" to add it to the firebase database.
 
 2. **Clear Database:**
-   - From the "Add Words" section, click "Clear Database" to remove all words from the database.
+   - From the "Add Words" section, click "Clear Database" to remove all words from the firebase database.
 
 ## Contributing
 
