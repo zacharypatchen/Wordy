@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Wordy"
         tools:targetApi="34">
         <activity
+            android:name=".VictoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddWordsActivity"
             android:exported="false" />
         <activity

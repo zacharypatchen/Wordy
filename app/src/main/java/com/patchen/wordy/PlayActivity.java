@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class PlayActivity extends AppCompatActivity {
 //EditText r1c5 = findViewById(R.id.r1c5ET);
 //ArrayList <Character> wordToGuess = new ArrayList<>();
     int round = 1;
-
+    private List<List<EditText>> editTextRows = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -43,71 +44,52 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
         Intent intent = getIntent();
         gameWord = getIntent().getStringExtra("WORD");
+        for (int i = 1; i <= 6; i++) {
+            List<EditText> row = new ArrayList<>();
+            for (int j = 1; j <= 5; j++) {
+                int editTextId = getResources().getIdentifier("r" + i + "c" + j + "ET", "id", getPackageName());
+                EditText editText = findViewById(editTextId);
+                row.add(editText);
+            }
+            editTextRows.add(row);
+        }
+        Button clearButton = findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Reset the activity
+                clearEditTextValues();
+                recreate();
+            }
+        });
         gW = breakApartString(gameWord);
-        EditText r1c1 = findViewById(R.id.r1c1ET);
-        EditText r1c2 = findViewById(R.id.r1c2ET);
-        EditText r1c3 = findViewById(R.id.r1c3ET);
-        EditText r1c4 = findViewById(R.id.r1c4ET);
-        EditText r1c5 = findViewById(R.id.r1c5ET);
-        EditText r2c1 = findViewById(R.id.r2c1ET);
-        EditText r2c2 = findViewById(R.id.r2c2ET);
-        EditText r2c3 = findViewById(R.id.r2c3ET);
-        EditText r2c4 = findViewById(R.id.r2c4ET);
-        EditText r2c5 = findViewById(R.id.r2c5ET);
-        EditText r3c1 = findViewById(R.id.r3c1ET);
-        EditText r3c2 = findViewById(R.id.r3c2ET);
-        EditText r3c3 = findViewById(R.id.r3c3ET);
-        EditText r3c4 = findViewById(R.id.r3c4ET);
-        EditText r3c5 = findViewById(R.id.r3c5ET);
-        EditText r4c1 = findViewById(R.id.r4c1ET);
-        EditText r4c2 = findViewById(R.id.r4c2ET);
-        EditText r4c3 = findViewById(R.id.r4c3ET);
-        EditText r4c4 = findViewById(R.id.r4c4ET);
-        EditText r4c5 = findViewById(R.id.r4c5ET);
-        EditText r5c1 = findViewById(R.id.r5c1ET);
-        EditText r5c2 = findViewById(R.id.r5c2ET);
-        EditText r5c3 = findViewById(R.id.r5c3ET);
-        EditText r5c4 = findViewById(R.id.r5c4ET);
-        EditText r5c5 = findViewById(R.id.r5c5ET);
-        EditText r6c1 = findViewById(R.id.r6c1ET);
-        EditText r6c2 = findViewById(R.id.r6c2ET);
-        EditText r6c3 = findViewById(R.id.r6c3ET);
-        EditText r6c4 = findViewById(R.id.r6c4ET);
-        EditText r6c5 = findViewById(R.id.r6c5ET);
-        //r1c1.addTextChangedListener(new MyTextWatcher());
-        //r1c2.addTextChangedListener(new MyTextWatcher());
-        //r1c3.addTextChangedListener(new MyTextWatcher());
-       // r1c4.addTextChangedListener(new MyTextWatcher());
-        r1c5.addTextChangedListener(new MyTextWatcher());
-       // r2c1.addTextChangedListener(new MyTextWatcher());
-        //r2c2.addTextChangedListener(new MyTextWatcher());
-        //r2c3.addTextChangedListener(new MyTextWatcher());
-       // r2c4.addTextChangedListener(new MyTextWatcher());
-        r2c5.addTextChangedListener(new MyTextWatcher());
-        //r3c1.addTextChangedListener(new MyTextWatcher());
-        //r3c2.addTextChangedListener(new MyTextWatcher());
-       //r3c3.addTextChangedListener(new MyTextWatcher());
-        //r3c4.addTextChangedListener(new MyTextWatcher());
-        r3c5.addTextChangedListener(new MyTextWatcher());
-        //r4c1.addTextChangedListener(new MyTextWatcher());
-        //r4c2.addTextChangedListener(new MyTextWatcher());
-        //r4c3.addTextChangedListener(new MyTextWatcher());
-        //r4c4.addTextChangedListener(new MyTextWatcher());
-        r4c5.addTextChangedListener(new MyTextWatcher());
-        //r5c1.addTextChangedListener(new MyTextWatcher());
-        //r5c2.addTextChangedListener(new MyTextWatcher());
-        //r5c3.addTextChangedListener(new MyTextWatcher());
-        //r5c4.addTextChangedListener(new MyTextWatcher());
-        r5c5.addTextChangedListener(new MyTextWatcher());
-        //r6c1.addTextChangedListener(new MyTextWatcher());
-        //r6c2.addTextChangedListener(new MyTextWatcher());
-        //r6c3.addTextChangedListener(new MyTextWatcher());
-        //r6c4.addTextChangedListener(new MyTextWatcher());
-        r6c5.addTextChangedListener(new MyTextWatcher());
+        EditText[][] editTextArray = new EditText[6][5];
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 5; j++) {
+                String editTextID = "r" + (i + 1) + "c" + (j + 1) + "ET";
+                int resID = getResources().getIdentifier(editTextID, "id", getPackageName());
+                editTextArray[i][j] = findViewById(resID);
+                editTextArray[i][j].addTextChangedListener(new MyTextWatcher());
+            }
+        }
+    }
+    private void clearEditTextValues() {
+        for (int i = 0; i < editTextRows.size(); i++) {
+            List<EditText> row = editTextRows.get(i);
+            for (int j = 0; j < row.size(); j++) {
+                EditText editText = row.get(j);
+                editText.setText("");  // Clear the text
+                editText.setBackgroundColor(Color.TRANSPARENT);// Reset background color
+                editText.setBackgroundResource(R.drawable.underline);
+            }
+        }
+
+        // Reset round and set visibility for the first row
+        round = 1;
+        setNextRowVisible();
     }
 
-
-    private ArrayList<Character> breakApartString(String inputString) {
+        private ArrayList<Character> breakApartString(String inputString) {
         ArrayList<Character> characters = new ArrayList<>();
         if (inputString != null) {
             for (char c : inputString.toCharArray()) {
@@ -119,37 +101,22 @@ public class PlayActivity extends AppCompatActivity {
 
 
     private class MyTextWatcher implements TextWatcher {
-        EditText r1c1 = findViewById(R.id.r1c1ET);
-        EditText r1c2 = findViewById(R.id.r1c2ET);
-        EditText r1c3 = findViewById(R.id.r1c3ET);
-        EditText r1c4 = findViewById(R.id.r1c4ET);
-        EditText r1c5 = findViewById(R.id.r1c5ET);
-        EditText r2c1 = findViewById(R.id.r2c1ET);
-        EditText r2c2 = findViewById(R.id.r2c2ET);
-        EditText r2c3 = findViewById(R.id.r2c3ET);
-        EditText r2c4 = findViewById(R.id.r2c4ET);
-        EditText r2c5 = findViewById(R.id.r2c5ET);
-        EditText r3c1 = findViewById(R.id.r3c1ET);
-        EditText r3c2 = findViewById(R.id.r3c2ET);
-        EditText r3c3 = findViewById(R.id.r3c3ET);
-        EditText r3c4 = findViewById(R.id.r3c4ET);
-        EditText r3c5 = findViewById(R.id.r3c5ET);
-        EditText r4c1 = findViewById(R.id.r4c1ET);
-        EditText r4c2 = findViewById(R.id.r4c2ET);
-        EditText r4c3 = findViewById(R.id.r4c3ET);
-        EditText r4c4 = findViewById(R.id.r4c4ET);
-        EditText r4c5 = findViewById(R.id.r4c5ET);
-        EditText r5c1 = findViewById(R.id.r5c1ET);
-        EditText r5c2 = findViewById(R.id.r5c2ET);
-        EditText r5c3 = findViewById(R.id.r5c3ET);
-        EditText r5c4 = findViewById(R.id.r5c4ET);
-        EditText r5c5 = findViewById(R.id.r5c5ET);
-        EditText r6c1 = findViewById(R.id.r6c1ET);
-        EditText r6c2 = findViewById(R.id.r6c2ET);
-        EditText r6c3 = findViewById(R.id.r6c3ET);
-        EditText r6c4 = findViewById(R.id.r6c4ET);
-        EditText r6c5 = findViewById(R.id.r6c5ET);
+        private List<List<EditText>> editTextRows;
 
+        // Initialize and organize EditTexts into rows
+        public MyTextWatcher() {
+            editTextRows = new ArrayList<>();
+
+            for (int i = 1; i <= 6; i++) {
+                List<EditText> row = new ArrayList<>();
+                for (int j = 1; j <= 5; j++) {
+                    int editTextId = getResources().getIdentifier("r" + i + "c" + j + "ET", "id", getPackageName());
+                    EditText editText = findViewById(editTextId);
+                    row.add(editText);
+                }
+                editTextRows.add(row);
+            }
+        }
 
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -165,260 +132,109 @@ public class PlayActivity extends AppCompatActivity {
         public void afterTextChanged(Editable editable) {
             int nonEmptyCount = 0;
 
-            switch (round) {
-                case 1:
-                    if (!r1c1.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r1c2.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r1c3.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r1c4.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r1c5.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    // Trigger your method when 5 EditTexts have values
-                    if (nonEmptyCount == 5) {
-                        for (int i = 0; i < gW.size(); i++) {
-                            if (r1c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(0))))) {
-                                r1c1.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r1c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r1c1.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r1c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(1))))) {
-                                r1c2.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r1c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r1c2.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r1c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(2))))) {
-                                r1c3.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r1c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r1c3.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r1c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(3))))) {
-                                r1c4.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r1c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r1c4.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r1c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(4))))) {
-                                r1c5.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r1c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r1c5.setBackgroundColor(Color.YELLOW);//green
-                            }
-                        }
-                        r2c1.setVisibility(View.VISIBLE);
-                        r2c2.setVisibility(View.VISIBLE);
-                        r2c3.setVisibility(View.VISIBLE);
-                        r2c4.setVisibility(View.VISIBLE);
-                        r2c5.setVisibility(View.VISIBLE);
-                        round++;
-                    }
-                    break;
-                case 2:
-                    if (!r2c1.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r2c2.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r2c3.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r2c4.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r2c5.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (nonEmptyCount == 5) {
-                        for (int i = 0; i < gW.size(); i++) {
-                            if (r2c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(0))))) {
-                                r2c1.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r2c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r2c1.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r2c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(1))))) {
-                                r2c2.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r2c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r2c2.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r2c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(2))))) {
-                                r2c3.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r2c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r2c3.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r2c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(3))))) {
-                                r2c4.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r2c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r2c4.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r2c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(4))))) {
-                                r2c5.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r2c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r2c5.setBackgroundColor(Color.YELLOW);//green
-                            }
+            // Count non-empty EditTexts
+            for (EditText editText : editTextRows.get(round - 1)) {
+                if (!editText.getText().toString().toUpperCase().trim().isEmpty()) {
+                    nonEmptyCount++;
+                }
+            }
 
-                        }
-                        r3c1.setVisibility(View.VISIBLE);
-                        r3c2.setVisibility(View.VISIBLE);
-                        r3c3.setVisibility(View.VISIBLE);
-                        r3c4.setVisibility(View.VISIBLE);
-                        r3c5.setVisibility(View.VISIBLE);
-                        round++;
-                    }
-                    break;
-                case 3:
-                    if (!r3c1.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r3c2.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r3c3.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r3c4.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r3c5.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (nonEmptyCount == 5) {
-                        for (int i = 0; i < gW.size(); i++) {
-                            if (r3c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(0))))) {
-                                r3c1.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r3c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r3c1.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r3c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(1))))) {
-                                r3c2.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r3c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r3c2.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r3c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(2))))) {
-                                r3c3.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r3c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r3c3.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r3c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(3))))) {
-                                r3c4.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r3c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r3c4.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r3c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(4))))) {
-                                r3c5.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r3c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r3c5.setBackgroundColor(Color.YELLOW);//green
-                            }
-                        }
-                        r4c1.setVisibility(View.VISIBLE);
-                        r4c2.setVisibility(View.VISIBLE);
-                        r4c3.setVisibility(View.VISIBLE);
-                        r4c4.setVisibility(View.VISIBLE);
-                        r4c5.setVisibility(View.VISIBLE);
-                    }
-                    round++;
-                    break;
-                case 4:
-                    if (!r4c1.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r4c2.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r4c3.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r4c4.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r4c5.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (nonEmptyCount == 5) {
-                        for (int i = 0; i < gW.size(); i++) {
-                            if (r4c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(0))))) {
-                                r4c1.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r4c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r4c1.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r4c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(1))))) {
-                                r4c2.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r4c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r4c2.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r4c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(2))))) {
-                                r4c3.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r4c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r4c3.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r4c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(3))))) {
-                                r4c4.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r4c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r4c4.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r4c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(4))))) {
-                                r4c5.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r4c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r4c5.setBackgroundColor(Color.YELLOW);//green
-                            }
-                        }
-                        r5c1.setVisibility(View.VISIBLE);
-                        r5c2.setVisibility(View.VISIBLE);
-                        r5c3.setVisibility(View.VISIBLE);
-                        r5c4.setVisibility(View.VISIBLE);
-                        r5c5.setVisibility(View.VISIBLE);
-                    }
-                    round++;
-                    break;
-                case 5:
-                    if (!r5c1.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r5c2.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r5c3.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r5c4.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r5c5.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (nonEmptyCount == 5) {
-                        for (int i = 0; i < gW.size(); i++) {
-                            if (r5c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(0))))) {
-                                r5c1.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r5c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r5c1.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r5c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(1))))) {
-                                r5c2.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r5c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r5c2.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r5c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(2))))) {
-                                r5c3.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r5c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r5c3.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r5c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(3))))) {
-                                r5c4.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r5c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r5c4.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r5c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(4))))) {
-                                r5c5.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r5c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r5c5.setBackgroundColor(Color.YELLOW);//green
-                            }
-                        }
-                        r6c1.setVisibility(View.VISIBLE);
-                        r6c2.setVisibility(View.VISIBLE);
-                        r6c3.setVisibility(View.VISIBLE);
-                        r6c4.setVisibility(View.VISIBLE);
-                        r6c5.setVisibility(View.VISIBLE);
+            // Trigger your method when 5 EditTexts have values
+            if (nonEmptyCount == 5) {
+                boolean allGreen = true; // Flag to check if all EditTexts are green
 
-                    }
-                    round++;
-                    break;
-                case 6:
-                    if (!r6c1.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r6c2.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r6c3.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r6c4.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (!r6c5.getText().toString().toUpperCase().trim().isEmpty()) nonEmptyCount++;
-                    if (nonEmptyCount == 5) {
-                        for (int i = 0; i < gW.size(); i++) {
-                            if (r6c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(0))))) {
-                                r6c1.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r6c1.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r6c1.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r6c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(1))))) {
-                                r6c2.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r6c2.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r6c2.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r6c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(2))))) {
-                                r6c3.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r6c3.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r6c3.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r6c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(3))))) {
-                                r6c4.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r6c4.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r6c4.setBackgroundColor(Color.YELLOW);//green
-                            }
-                            if (r6c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(4))))) {
-                                r6c5.setBackgroundColor(Color.GREEN); //yellow
-                            } else if (r6c5.getText().toString().toUpperCase().equals((String.valueOf(gW.get(i))))) {
-                                r6c5.setBackgroundColor(Color.YELLOW);//green
-                            }
+                // Iterate through the selected row
+                for (int i = 0; i < gW.size(); i++) {
+                    for (EditText editText : editTextRows.get(round - 1)) {
+                        String editTextValue = editText.getText().toString().toUpperCase();
+                        String gWValue = String.valueOf(gW.get(i));
+
+                        if (editTextValue.equals(gW.get(editTextRows.get(round - 1).indexOf(editText)).toString())) {
+                            editText.setBackgroundColor(Color.GREEN);
+                        } else if (editTextValue.equals(gWValue)) {
+                            editText.setBackgroundColor(Color.YELLOW);
+                        } else {
+                            allGreen = false; // Set flag to false if any EditText is not green
                         }
                     }
-                    break;
-                default:
-                    // code block
+                }
+
+                // Check if all EditTexts are green
+                if (allGreen) {
+                    // Start a new activity with the victory screen
+                    Intent intent = new Intent(PlayActivity.this, VictoryActivity.class);
+                    intent.putExtra("GAME_WORD", gameWord);
+                    startActivity(intent);
+                } else {
+                    // Set visibility for the next row
+                    if (round < 6) {
+                        setNextRowVisible();
+                    }
+
+                    round++;
+                }
             }
         }
 
+
+        // Set visibility for the next row
+
     }
+    public void setNextRowVisible() {
+        for (EditText editText : editTextRows.get(round)) {
+            editText.setVisibility(View.VISIBLE);
+        }
+    }
+    public void newWord(View view) {
+        // Clear the EditText values and reset the activity
+        clearEditTextValues();
+
+        // Get a new word from the database
+        getNewWordFromDatabase();
+    }
+
+    private void getNewWordFromDatabase() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("words");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> wordList = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String word = snapshot.getValue(String.class);
+                    wordList.add(word);
+                }
+
+                if (!wordList.isEmpty()) {
+                    // Pick a random word from the list
+                    String newWord = wordList.get(new Random().nextInt(wordList.size()));
+
+                    // Start a new round with the new word
+                    startNewRound(newWord);
+                } else {
+                    // Handle the case when the database is empty
+                    Toast.makeText(PlayActivity.this, "No words available in the database", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("DatabaseError", "Error fetching new word: " + databaseError.getMessage());
+            }
+        });
+    }
+
+    private void startNewRound(String newWord) {
+        // Reset the round and set visibility for the first row
+        round = 1;
+        //setNextRowVisible();
+
+        // Update the gameWord with the new word
+        gameWord = newWord;
+        gW = breakApartString(gameWord);
+
+        // Optionally, update UI to display the new word or perform any other necessary actions
+    }
+
+
 }

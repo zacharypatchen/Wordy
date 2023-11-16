@@ -32,6 +32,28 @@ public class AddWordsActivity extends AppCompatActivity {
         String word = wordET.getText().toString().toUpperCase();
         addWordToDatabase(word);
     }
+    public void clearDatabase(View view) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("words");
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Remove all entries
+                myRef.removeValue();
+
+                // Notify the user
+                Toast.makeText(AddWordsActivity.this, "Database cleared", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("DatabaseError", "Error clearing the database: " + databaseError.getMessage());
+                Toast.makeText(AddWordsActivity.this, "Error clearing the database", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     private void addWordToDatabase(String word) {
         if (wordCheck(word)) {
