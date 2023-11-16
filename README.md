@@ -14,6 +14,10 @@ Wordy is an Android word-guessing game that allows users to guess words and mana
 - [Contributing](#contributing)
 - [Acknowledgments](#acknowledgments)
 
+## Author
+
+Zachary Patchen
+
 ## Introduction
 
 Wordy is a simple Android application developed in Java. It provides users with a word-guessing game where they can play, add new words to a firebase database, and celebrate victories.
