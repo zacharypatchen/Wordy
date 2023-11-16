@@ -25,25 +25,53 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Activity for playing the game.
+ */
 public class PlayActivity extends AppCompatActivity {
-    String randomWord;
+    // The word for the current game
     String gameWord;
+    // List to store the characters of the game word
     ArrayList<Character> gW = new ArrayList<>();
-    //EditText r1c1 = findViewById(R.id.r1c1ET);
-//EditText r1c2 = findViewById(R.id.r1c2ET);
-//EditText r1c3 = findViewById(R.id.r1c3ET);
-//EditText r1c4 = findViewById(R.id.r1c4ET);
-//EditText r1c5 = findViewById(R.id.r1c5ET);
-//ArrayList <Character> wordToGuess = new ArrayList<>();
+    // Current round number
     int round = 1;
+    // List to store rows of EditTexts for the game board
     private List<List<EditText>> editTextRows = new ArrayList<>();
+
+    /**
+     * Called when the activity is first created.
+     * Sets the content view and initializes the game board.
+     *
+     * @param savedInstanceState A saved instance state of the application.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
+        // Get the word from the intent
         Intent intent = getIntent();
         gameWord = getIntent().getStringExtra("WORD");
+
+        // Break the word into characters and store in the list
+        gW = breakApartString(gameWord);
+
+        // Set up the clear button and create the game board
+        Button clearButton = findViewById(R.id.clearButton);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearEditTextValues();
+                recreate();
+            }
+        });
+
+        createETArray();
+        createETObjects();
+    }
+
+    // Method to create a 2D array of EditText objects
+    private void createETArray() {
         for (int i = 1; i <= 6; i++) {
             List<EditText> row = new ArrayList<>();
             for (int j = 1; j <= 5; j++) {
@@ -53,16 +81,10 @@ public class PlayActivity extends AppCompatActivity {
             }
             editTextRows.add(row);
         }
-        Button clearButton = findViewById(R.id.clearButton);
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Reset the activity
-                clearEditTextValues();
-                recreate();
-            }
-        });
-        gW = breakApartString(gameWord);
+    }
+
+    // Method to create EditText objects and set up TextWatchers
+    private void createETObjects() {
         EditText[][] editTextArray = new EditText[6][5];
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 5; j++) {
@@ -73,23 +95,24 @@ public class PlayActivity extends AppCompatActivity {
             }
         }
     }
+
+    // Method to clear all EditText values and reset the game board
     private void clearEditTextValues() {
         for (int i = 0; i < editTextRows.size(); i++) {
             List<EditText> row = editTextRows.get(i);
             for (int j = 0; j < row.size(); j++) {
                 EditText editText = row.get(j);
-                editText.setText("");  // Clear the text
-                editText.setBackgroundColor(Color.TRANSPARENT);// Reset background color
+                editText.setText("");
+                editText.setBackgroundColor(Color.TRANSPARENT);
                 editText.setBackgroundResource(R.drawable.underline);
             }
         }
-
-        // Reset round and set visibility for the first row
         round = 1;
         setNextRowVisible();
     }
 
-        private ArrayList<Character> breakApartString(String inputString) {
+    // Method to break apart a string into a list of characters
+    private ArrayList<Character> breakApartString(String inputString) {
         ArrayList<Character> characters = new ArrayList<>();
         if (inputString != null) {
             for (char c : inputString.toCharArray()) {
@@ -99,14 +122,16 @@ public class PlayActivity extends AppCompatActivity {
         return characters;
     }
 
-
+    /**
+     * Custom TextWatcher for handling user input in the game.
+     */
     private class MyTextWatcher implements TextWatcher {
+        // List to store rows of EditTexts for the game board
         private List<List<EditText>> editTextRows;
 
-        // Initialize and organize EditTexts into rows
+        // Constructor to initialize the list of EditText rows
         public MyTextWatcher() {
             editTextRows = new ArrayList<>();
-
             for (int i = 1; i <= 6; i++) {
                 List<EditText> row = new ArrayList<>();
                 for (int j = 1; j <= 5; j++) {
@@ -141,9 +166,9 @@ public class PlayActivity extends AppCompatActivity {
 
             // Trigger your method when 5 EditTexts have values
             if (nonEmptyCount == 5) {
-                boolean allGreen = true; // Flag to check if all EditTexts are green
+                boolean allGreen = true;
 
-                // Iterate through the selected row
+                // Check user input against the correct word
                 for (int i = 0; i < gW.size(); i++) {
                     for (EditText editText : editTextRows.get(round - 1)) {
                         String editTextValue = editText.getText().toString().toUpperCase();
@@ -154,45 +179,41 @@ public class PlayActivity extends AppCompatActivity {
                         } else if (editTextValue.equals(gWValue)) {
                             editText.setBackgroundColor(Color.YELLOW);
                         } else {
-                            allGreen = false; // Set flag to false if any EditText is not green
+                            allGreen = false;
                         }
                     }
                 }
 
-                // Check if all EditTexts are green
+                // Start a new activity with the victory screen if all characters are correct
                 if (allGreen) {
-                    // Start a new activity with the victory screen
                     Intent intent = new Intent(PlayActivity.this, VictoryActivity.class);
                     intent.putExtra("GAME_WORD", gameWord);
                     startActivity(intent);
                 } else {
-                    // Set visibility for the next row
+                    // If not all characters are correct, proceed to the next round
                     if (round < 6) {
                         setNextRowVisible();
                     }
-
                     round++;
                 }
             }
         }
-
-
-        // Set visibility for the next row
-
     }
+
+    // Method to set visibility for the next row of EditTexts
     public void setNextRowVisible() {
         for (EditText editText : editTextRows.get(round)) {
             editText.setVisibility(View.VISIBLE);
         }
     }
-    public void newWord(View view) {
-        // Clear the EditText values and reset the activity
-        clearEditTextValues();
 
-        // Get a new word from the database
+    // Method to handle the "New Word" button click
+    public void newWord(View view) {
+        clearEditTextValues();
         getNewWordFromDatabase();
     }
 
+    // Method to fetch a new word from the database
     private void getNewWordFromDatabase() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("words");
 
@@ -204,15 +225,11 @@ public class PlayActivity extends AppCompatActivity {
                     String word = snapshot.getValue(String.class);
                     wordList.add(word);
                 }
-
                 if (!wordList.isEmpty()) {
-                    // Pick a random word from the list
+                    // Randomly select a new word from the database
                     String newWord = wordList.get(new Random().nextInt(wordList.size()));
-
-                    // Start a new round with the new word
                     startNewRound(newWord);
                 } else {
-                    // Handle the case when the database is empty
                     Toast.makeText(PlayActivity.this, "No words available in the database", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -224,17 +241,10 @@ public class PlayActivity extends AppCompatActivity {
         });
     }
 
+    // Method to start a new round with a given word
     private void startNewRound(String newWord) {
-        // Reset the round and set visibility for the first row
         round = 1;
-        //setNextRowVisible();
-
-        // Update the gameWord with the new word
         gameWord = newWord;
         gW = breakApartString(gameWord);
-
-        // Optionally, update UI to display the new word or perform any other necessary actions
     }
-
-
 }
