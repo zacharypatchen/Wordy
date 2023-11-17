@@ -26,9 +26,6 @@ import java.util.Random;
  */
 public class MainActivity extends AppCompatActivity {
 
-    // Array of words to be used in the game
-    String[] words = {"hello", "apple", "chill", "puppy", "dream", "guard", "adult", "wound", "force", "flood"};
-
     // Random object for word selection
     Random r;
 
@@ -72,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
                     // Iterate through the database entries
                     for (DataSnapshot s : snapshot.getChildren()) {
                         // Get a word from the database and add it to the list
-                        String randomWord = s.getValue(String.class);
-                        wordList.add(randomWord);
+                        String extractedWord = s.getValue(String.class);
+                        wordList.add(extractedWord);
                     }
 
                     // Create a random object
