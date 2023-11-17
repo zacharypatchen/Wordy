@@ -67,10 +67,10 @@ public class PlayActivity extends AppCompatActivity {
         });
 
         createETArray();
-        createETObjects();
+        //assignTextWatcherToEditText();
     }
 
-    // Method to create a 2D array of EditText objects
+    // Method to create a 2D array of EditText objects and assign TextWatcher
     private void createETArray() {
         for (int i = 1; i <= 6; i++) {
             List<EditText> row = new ArrayList<>();
@@ -79,23 +79,24 @@ public class PlayActivity extends AppCompatActivity {
                 EditText editText = findViewById(editTextId);
                 editText.setBackgroundColor(Color.LTGRAY);
                 row.add(editText);
+                editText.addTextChangedListener(new MyTextWatcher());
             }
             editTextRows.add(row);
         }
     }
 
     // Method to create EditText objects and set up TextWatchers
-    private void createETObjects() {
-        EditText[][] editTextArray = new EditText[6][5];
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 5; j++) {
-                String editTextID = "r" + (i + 1) + "c" + (j + 1) + "ET";
-                int resID = getResources().getIdentifier(editTextID, "id", getPackageName());
-                editTextArray[i][j] = findViewById(resID);
-                editTextArray[i][j].addTextChangedListener(new MyTextWatcher());
-            }
-        }
-    }
+//    private void assignTextWatcherToEditText() {
+//        EditText[][] editTextArray = new EditText[6][5];
+//        for (int i = 0; i < 6; i++) {
+//            for (int j = 0; j < 5; j++) {
+//                String editTextID = "r" + (i + 1) + "c" + (j + 1) + "ET";
+//                int resID = getResources().getIdentifier(editTextID, "id", getPackageName());
+//                editTextArray[i][j] = findViewById(resID);
+//                editTextArray[i][j].addTextChangedListener(new MyTextWatcher());
+//            }
+//        }
+//    }
 
     // Method to clear all EditText values and reset the game board
     private void clearEditTextValues() {
