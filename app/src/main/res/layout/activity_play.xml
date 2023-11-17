@@ -23,8 +23,8 @@
     <TableLayout
         android:layout_width="300dp"
         android:layout_height="505dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTV">
 
@@ -35,8 +35,8 @@
         <LinearLayout
             android:layout_width="288dp"
             android:layout_height="73dp"
-            android:orientation="horizontal"
             android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
 
@@ -44,6 +44,7 @@
                 android:id="@+id/r1c1ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
@@ -57,6 +58,7 @@
                 android:id="@+id/r1c2ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
@@ -70,6 +72,7 @@
                 android:id="@+id/r1c3ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
@@ -83,6 +86,7 @@
                 android:id="@+id/r1c4ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
@@ -96,6 +100,7 @@
                 android:id="@+id/r1c5ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
@@ -111,11 +116,12 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
         <LinearLayout
             android:layout_width="288dp"
             android:layout_height="73dp"
-            android:orientation="horizontal"
             android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
 
@@ -123,13 +129,14 @@
                 android:id="@+id/r2c1ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
@@ -137,12 +144,13 @@
                 android:id="@+id/r2c2ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -151,12 +159,13 @@
                 android:id="@+id/r2c3ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -165,12 +174,13 @@
                 android:id="@+id/r2c4ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -179,27 +189,30 @@
                 android:id="@+id/r2c5ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
 
         </LinearLayout>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
         <LinearLayout
             android:layout_width="288dp"
             android:layout_height="73dp"
-            android:orientation="horizontal"
-
             android:layout_marginLeft="30dp"
+
+            android:orientation="horizontal"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
 
@@ -207,13 +220,14 @@
                 android:id="@+id/r3c1ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
@@ -221,11 +235,12 @@
                 android:id="@+id/r3c2ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
-                android:textAlignment="center"
 
+                android:textAlignment="center"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
@@ -235,13 +250,14 @@
                 android:id="@+id/r3c3ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
@@ -249,12 +265,13 @@
                 android:id="@+id/r3c4ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -263,24 +280,27 @@
                 android:id="@+id/r3c5ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
         </LinearLayout>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
         <LinearLayout
             android:layout_width="288dp"
             android:layout_height="73dp"
-            android:orientation="horizontal"
             android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
 
@@ -288,11 +308,12 @@
                 android:id="@+id/r4c1ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
-                android:textAlignment="center"
 
+                android:textAlignment="center"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
@@ -302,12 +323,13 @@
                 android:id="@+id/r4c2ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -316,12 +338,13 @@
                 android:id="@+id/r4c3ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -330,12 +353,13 @@
                 android:id="@+id/r4c4ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -344,24 +368,27 @@
                 android:id="@+id/r4c5ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
         </LinearLayout>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
         <LinearLayout
             android:layout_width="288dp"
             android:layout_height="73dp"
-            android:orientation="horizontal"
             android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
 
@@ -369,12 +396,13 @@
                 android:id="@+id/r5c1ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -383,12 +411,13 @@
                 android:id="@+id/r5c2ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -397,13 +426,14 @@
                 android:id="@+id/r5c3ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
@@ -411,13 +441,14 @@
                 android:id="@+id/r5c4ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
@@ -425,24 +456,27 @@
                 android:id="@+id/r5c5ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
         </LinearLayout>
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
         <LinearLayout
             android:layout_width="288dp"
             android:layout_height="73dp"
-            android:orientation="horizontal"
             android:layout_marginLeft="30dp"
+            android:orientation="horizontal"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp">
 
@@ -450,12 +484,13 @@
                 android:id="@+id/r6c1ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
-                android:textSize="34sp"
 
+                android:textSize="34sp"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
@@ -464,13 +499,14 @@
                 android:id="@+id/r6c2ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
@@ -478,13 +514,13 @@
                 android:id="@+id/r6c3ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
                 android:textStyle="bold"
-
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
@@ -492,13 +528,13 @@
                 android:id="@+id/r6c4ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
                 android:textStyle="bold"
-
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
 
@@ -506,13 +542,14 @@
                 android:id="@+id/r6c5ET"
                 android:layout_width="46dp"
                 android:layout_height="53dp"
+                android:layout_marginRight="8dp"
                 android:editable="true"
                 android:ems="10"
                 android:inputType="text"
                 android:textAlignment="center"
                 android:textSize="34sp"
-                android:textStyle="bold"
 
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="58dp"
                 tools:layout_editor_absoluteY="75dp" />
         </LinearLayout>

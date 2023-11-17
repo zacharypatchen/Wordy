@@ -77,6 +77,7 @@ public class PlayActivity extends AppCompatActivity {
             for (int j = 1; j <= 5; j++) {
                 int editTextId = getResources().getIdentifier("r" + i + "c" + j + "ET", "id", getPackageName());
                 EditText editText = findViewById(editTextId);
+                editText.setBackgroundColor(Color.LTGRAY);
                 row.add(editText);
             }
             editTextRows.add(row);
@@ -103,12 +104,12 @@ public class PlayActivity extends AppCompatActivity {
             for (int j = 0; j < row.size(); j++) {
                 EditText editText = row.get(j);
                 editText.setText("");
-                editText.setBackgroundColor(Color.TRANSPARENT);
+                editText.setBackgroundColor(Color.LTGRAY);
                 editText.setBackgroundResource(R.drawable.underline);
             }
         }
         round = 1;
-        setNextRowVisible();
+        //setNextRowVisible();
     }
 
     // Method to break apart a string into a list of characters
@@ -204,13 +205,15 @@ public class PlayActivity extends AppCompatActivity {
     public void setNextRowVisible() {
         for (EditText editText : editTextRows.get(round)) {
             editText.setVisibility(View.VISIBLE);
+            //editText.setBackgroundColor(Color.LTGRAY);
         }
     }
 
     // Method to handle the "New Word" button click
     public void newWord(View view) {
-        clearEditTextValues();
         getNewWordFromDatabase();
+        clearEditTextValues();
+        createETArray();
     }
 
     // Method to fetch a new word from the database
@@ -246,5 +249,6 @@ public class PlayActivity extends AppCompatActivity {
         round = 1;
         gameWord = newWord;
         gW = breakApartString(gameWord);
+
     }
 }
